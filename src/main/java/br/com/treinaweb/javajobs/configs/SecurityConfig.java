@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     private static final String API_JOBS_URI = "/api/v1/jobs/**";
+    private static final String API_USERS_URI = "/api/v1/users/**";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -23,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests()
             .antMatchers(HttpMethod.GET, API_JOBS_URI).permitAll()
+            .antMatchers(API_USERS_URI).permitAll()
             .anyRequest().authenticated();
         
         http.sessionManagement()
